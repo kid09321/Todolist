@@ -41,9 +41,9 @@ ActiveRecord::Schema.define(version: 20160308172528) do
 
   create_table "works", force: :cascade do |t|
     t.string   "title"
-    t.boolean  "is_complete", default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.boolean  "is_complete", default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.text     "description"
     t.integer  "user_id"
   end
