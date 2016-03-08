@@ -1,7 +1,12 @@
+<div class="col-md-4 col-md-offset-4">
+<h2>修改細節</h2>
 <%= form_for [@work,@list] do |f| %>
 <div class="form-group">
 <%= f.label "名稱" %>
 <%= f.text_field :thing %>
+</div>
+<div class="form-actions">
 <%= f.submit "Submit", class: "btn btn-primary" %>
 </div>
 <% end %>
+</div>

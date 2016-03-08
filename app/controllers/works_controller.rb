@@ -14,7 +14,7 @@ class WorksController < ApplicationController
     @work = current_user.works.new(work_params)
 
     if @work.save
-      redirect_to works_path
+      redirect_to works_path, notice: "新增事項成功"
     else
       render :new
     end
@@ -25,7 +25,7 @@ class WorksController < ApplicationController
   def update
     @work = current_user.works.find(params[:id])
     if @work.update(work_params)
-      redirect_to works_path
+      redirect_to works_path, notice: "修改事項成功"
     end
   end
 
@@ -49,7 +49,7 @@ class WorksController < ApplicationController
   def destroy
     @work = current_user.works.find(params[:id])
     @work.destroy
-    redirect_to works_path
+    redirect_to works_path, alert: "刪除事項成功"
   end
   private
 

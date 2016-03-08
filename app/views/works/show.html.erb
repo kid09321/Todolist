@@ -4,7 +4,6 @@
 <%= link_to("新增事項", new_work_list_path(@work), id: "new_thing", class: "btn btn-primary", remote: true) %>
 </div>
 <div class="text-center">
-<h3>待辦事項</h3>
 <table class="table">
 <thead>
 <tr>
@@ -18,18 +17,28 @@
 <tr>
 <td><%= list.id %></td>
 <td><%= list.thing%></td>
-<td><%= link_to("完成", "#", method: :post, class: "btn btn-primary btn-xs") %>
-<%= link_to("編輯", "#", class: "btn btn-info btn-xs") %>
+<td><%= link_to("完成", to_completed_work_list_path(list.work, list), method: :post, class: "btn btn-primary btn-xs") %>
+<%= link_to("編輯", edit_work_list_path(list.work, list), class: "btn btn-info btn-xs") %>
 <%= link_to("刪除", work_list_path(list.work, list), method: :delete, class: "btn btn-danger btn-xs") %></td>
 </tr>
 <% end %>
 </tbody>
 </table>
+<h3>已完成</h3>
+<table class="table">
+<thead>
+<tr>
+<th>#</th>
+<th>待辦事情</th>
+<th>狀態</th>
+</tr>
+</thead>
+<tbody>
 <% @completed_lists.each do |list| %>
 <tr>
 <td><%= list.id %></td>
-<td class="completed"><%= list.title%></td>
-<td><%= link_to("還有事情沒做完", "#", method: :post, class: "btn btn-primary btn-xs") %>
+<td class="completed"><%= list.thing%></td>
+<td><%= link_to("還有事情沒做完", to_incomplete_work_list_path(list.work, list), method: :post, class: "btn btn-primary btn-xs") %>
 <%= link_to("刪除事項", work_list_path(list.work, list), method: :delete, class: "btn btn-danger btn-xs") %></td>
 </tr>
 <% end %>

@@ -5,7 +5,12 @@ Rails.application.routes.draw do
       post :to_completed
       post :to_incomplete
     end
-    resources :lists
+    resources :lists do
+      member do
+        post :to_completed
+        post :to_incomplete
+      end
+    end
   end
   root "works#index"
 
