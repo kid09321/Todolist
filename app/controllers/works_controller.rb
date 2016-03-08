@@ -2,8 +2,8 @@ class WorksController < ApplicationController
 
   before_action :authenticate_user!
   def index
-    @incomplete_works = current_user.works.where(is_complete: 0)
-    @completed_works = current_user.works.where(is_complete: 1)
+    @incomplete_works = current_user.works.where(is_complete: false)
+    @completed_works = current_user.works.where(is_complete: true)
   end
 
   def new
@@ -11,7 +11,7 @@ class WorksController < ApplicationController
   end
 
   def create
-    @work = current_user.works.new(work_params)
+    @work = current_user.works.build(work_params)
 
     if @work.save
       redirect_to works_path, notice: "新增事項成功"
