@@ -1,7 +1,9 @@
 class WorksController < ApplicationController
+
+  before_action :authenticate_user!
   def index
-    @incomplete_works = Work.where(is_complete: 0)
-    @completed_works = Work.where(is_complete: 1)
+    @incomplete_works = current_user.works.where(is_complete: 0)
+    @completed_works = current_user.works.where(is_complete: 1)
   end
 
   def new
@@ -9,7 +11,7 @@ class WorksController < ApplicationController
   end
 
   def create
-    @work = Work.new(work_params)
+    @work = current_user.works.new(work_params)
 
     if @work.save
       redirect_to works_path
@@ -18,34 +20,34 @@ class WorksController < ApplicationController
     end
   end
   def edit
-    @work = Work.find(params[:id])
+    @work = current_user.works.find(params[:id])
   end
   def update
-    @work = Work.find(params[:id])
+    @work = current_user.works.find(params[:id])
     if @work.update(work_params)
       redirect_to works_path
     end
   end
 
   def show
-    @work = Work.find(params[:id])
+    @work = current_user.works.find(params[:id])
     @incomplete_lists = @work.lists.where(is_complete: false)
     @completed_lists = @work.lists.where(is_complete: true)
   end
   def to_completed
-    @work = Work.find(params[:id])
+    @work = current_user.works.find(params[:id])
     @work.to_completed!
     redirect_to works_path
   end
 
   def to_incomplete
-    @work = Work.find(params[:id])
+    @work = current_user.works.find(params[:id])
     @work.to_incomplete!
     redirect_to works_path
   end
 
   def destroy
-    @work = Work.find(params[:id])
+    @work = current_user.works.find(params[:id])
     @work.destroy
     redirect_to works_path
   end
