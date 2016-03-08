@@ -1,0 +1,47 @@
+<h2>全部事項</h2>
+<div class="pull-right">
+<%= link_to("新增事項", new_work_path, class: "btn btn-info") %>
+</div>
+<h3>待辦事項</h3>
+<table class="table">
+<thead>
+<tr>
+<th>#</th>
+<th>待辦事情</th>
+<th>狀態</th>
+</tr>
+</thead>
+<tbody>
+<% @incomplete_works.each do |work| %>
+<tr>
+<td><%= work.id %></td>
+<td><%= link_to(work.title, work_path(work))%></td>
+<td><%= link_to("完成", to_completed_work_path(work), method: :post, class: "btn btn-primary btn-xs") %>
+<%= link_to("編輯", edit_work_path(work), class: "btn btn-info btn-xs") %>
+<%= link_to("刪除", work_path(work), method: :delete, class: "btn btn-danger btn-xs") %></td>
+</tr>
+<% end %>
+</tbody>
+</table>
+<h3>已完成</h3>
+<table class="table">
+<thead>
+<tr>
+<th>#</th>
+<th>待辦事情</th>
+<th>狀態</th>
+</tr>
+</thead>
+<tbody>
+<% @completed_works.each do |work| %>
+<tr>
+<td><%= work.id %></td>
+<td class="completed"><%= work.title%></td>
+<td><%= link_to("還有事情沒做完", to_incomplete_work_path(work), method: :post, class: "btn btn-primary btn-xs") %>
+<%= link_to("刪除事項", work_path(work), method: :delete, class: "btn btn-danger btn-xs") %></td>
+</tr>
+<% end %>
+</tbody>
+</table>
+
+
