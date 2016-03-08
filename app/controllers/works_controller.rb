@@ -29,6 +29,8 @@ class WorksController < ApplicationController
 
   def show
     @work = Work.find(params[:id])
+    @incomplete_lists = @work.lists.where(is_complete: false)
+    @completed_lists = @work.lists.where(is_complete: true)
   end
   def to_completed
     @work = Work.find(params[:id])

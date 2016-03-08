@@ -1,5 +1,28 @@
 <div class="col-md-4 col-md-offset-4">
 <h2 class="text-center"><%= @work.title %></h2>
+<div class="pull-right">
+<%= link_to("新增事項", new_work_list_path(@work), id: "new_thing", class: "btn btn-primary", remote: true) %>
+</div>
 <div class="text-center">
-<%= @work.description %>
+<h3>待辦事項</h3>
+<table class="table">
+<thead>
+<tr>
+<th>#</th>
+<th>待辦事情</th>
+<th>狀態</th>
+</tr>
+</thead>
+<tbody>
+<% @incomplete_lists.each do |list| %>
+<tr>
+<td><%= list.id %></td>
+<td><%= list.thing%></td>
+<td><%= link_to("完成", "#", method: :post, class: "btn btn-primary btn-xs") %>
+<%= link_to("編輯", "#", class: "btn btn-info btn-xs") %>
+<%= link_to("刪除", work_list_path(list.work, list), method: :delete, class: "btn btn-danger btn-xs") %></td>
+</tr>
+<% end %>
+</tbody>
+</table>
 </div>

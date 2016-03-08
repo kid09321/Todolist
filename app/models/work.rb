@@ -1,5 +1,5 @@
 class Work < ActiveRecord::Base
-
+  has_many :lists
   def to_completed!
     update_columns(is_complete: 1)
   end

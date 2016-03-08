@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       post :to_completed
       post :to_incomplete
     end
+    resources :lists
   end
   root "works#index"
 
