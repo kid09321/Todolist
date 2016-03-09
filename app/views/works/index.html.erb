@@ -8,17 +8,24 @@
 <tr>
 <th>#</th>
 <th>待辦事情</th>
-<th>狀態</th>
+<th>更改狀態</th>
 </tr>
 </thead>
 <tbody>
 <% @incomplete_works.each do |work| %>
-<tr>
-<td><%= work.id %></td>
-<td><%= link_to(work.title, work_path(work))%></td>
-<td><%= link_to("完成", to_completed_work_path(work), method: :post, class: "btn btn-primary btn-xs") %>
-<%= link_to("編輯", edit_work_path(work), class: "btn btn-info btn-xs") %>
-<%= link_to("刪除", work_path(work), method: :delete, class: "btn btn-danger btn-xs") %></td>
+<tr class="todowork">
+<td class="check"><%= link_to(to_completed_work_path(work), method: :post) do %>
+    <i class="fa fa-check"></i>
+    <% end %></td>
+<td class="work"><%= link_to(work.title, work_path(work))%></td>
+<td class="operate">
+<%= link_to(edit_work_path(work)) do %>
+<i class="fa fa-edit"></i>
+<% end %>
+<%= link_to(work_path(work), method: :delete) do%>
+<i class="fa fa-trash">
+<% end %>
+</td>
 </tr>
 <% end %>
 </tbody>
@@ -29,16 +36,21 @@
 <tr>
 <th>#</th>
 <th>待辦事情</th>
-<th>狀態</th>
+<th>更改狀態</th>
 </tr>
 </thead>
 <tbody>
 <% @completed_works.each do |work| %>
-<tr>
-<td><%= work.id %></td>
-<td class="completed"><%= work.title%></td>
-<td><%= link_to("還有事情沒做完", to_incomplete_work_path(work), method: :post, class: "btn btn-primary btn-xs") %>
-<%= link_to("刪除事項", work_path(work), method: :delete, class: "btn btn-danger btn-xs") %></td>
+<tr class="todowork">
+<td class="check"><%= link_to(to_incomplete_work_path(work), method: :post) do%>
+<i class="fa fa-arrow-up"></i>
+<% end %></td>
+<td class="work finish"><%= work.title%></td>
+<td class="operate">
+<%= link_to(work_path(work), method: :delete) do %>
+<i class="fa fa-trash"></i>
+<% end %>
+</td>
 </tr>
 <% end %>
 </tbody>
