@@ -14,9 +14,9 @@ class WorksController < ApplicationController
     @work = current_user.works.build(work_params)
 
     if @work.save
-      redirect_to works_path, notice: "新增事項成功"
+      redirect_to work_path(@work), notice: "新增事項成功"
     else
-      render :new
+      redirect_to works_path, alert: "請輸入事項"
     end
   end
   def edit
