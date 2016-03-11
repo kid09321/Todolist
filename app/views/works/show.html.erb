@@ -1,15 +1,17 @@
 <h2 class="text-center"><%= @work.title %></h2>
-<div class="pull-right">
-<%= link_to("新增細節", new_work_list_path(@work), id: "new_thing", class: "btn btn-primary", remote: true) %>
+<div class="clearfix">
+<span class="pull-right">
+<%= link_to("新增細節", new_work_list_path(@work), id: "new_thing", class: "btn btn-danger", remote: true) %>
+</span>
 </div>
 <div class="text-center">
-<h3 class="pull-left">細項</h3>
+<h3>細項</h3>
 <table class="table">
 <thead>
 <tr>
-<th>#</th>
-<th>待辦事情</th>
-<th>更改狀態</th>
+<th></th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
@@ -18,7 +20,7 @@
 <td class="check"><%= link_to(to_completed_work_list_path(list.work,list), method: :post) do %>
     <i class="fa fa-check"></i>
     <% end %></td>
-<td class="work"><%= list.thing%></td>
+<td class="work"><%= list.thing%><br><%= list.created_at.to_s(:short) %></td>
 <td class="operate">
 <%= link_to(edit_work_list_path(list.work, list)) do %>
 <i class="fa fa-edit"></i>
@@ -35,9 +37,9 @@
 <table class="table">
 <thead>
 <tr>
-<th>#</th>
-<th>待辦事情</th>
-<th>更改狀態</th>
+<th></th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
@@ -46,7 +48,7 @@
 <td class="check"><%= link_to(to_incomplete_work_list_path(list.work, list), method: :post) do%>
 <i class="fa fa-arrow-up"></i>
 <% end %></td>
-<td class="work finish"><%= list.thing%></td>
+<td class="work"><span class="finish"><%= list.thing%></span><br><%= list.completed_at.to_s(:short) %></td>
 <td class="operate">
 <%= link_to(work_list_path(list.work,list), method: :delete) do %>
 <i class="fa fa-trash"></i>

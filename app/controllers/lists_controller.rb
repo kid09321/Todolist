@@ -38,6 +38,7 @@ class ListsController < ApplicationController
   def to_completed
     @list = @work.lists.find(params[:id])
     @list.to_completed!
+    @list.update_columns(completed_at: Time.current)
     redirect_to work_path(@work)
   end
 
@@ -49,7 +50,7 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:thing)
+    params.require(:list).permit(:thing, :completed_at)
   end
 
   def find_work

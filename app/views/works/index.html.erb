@@ -1,14 +1,16 @@
-<h2>全部事項</h2>
-<div class="pull-right">
+<h2>清單</h2>
+<div class="clearfix">
+<span class="pull-right">
 <%= link_to("新增事項", new_work_path, class: "btn btn-info", id: "new_button", remote: true) %>
+</span>
 </div>
-<h3>待辦事項</h3>
+<h3>未完成</h3>
 <table class="table">
 <thead>
 <tr>
-<th>#</th>
-<th>待辦事情</th>
-<th>更改狀態</th>
+<th></th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
@@ -17,7 +19,7 @@
 <td class="check"><%= link_to(to_completed_work_path(work), method: :post) do %>
     <i class="fa fa-check"></i>
     <% end %></td>
-<td class="work"><%= link_to(work.title, work_path(work))%></td>
+<td class="work"><%= link_to(work.title, work_path(work))%><br> <%= work.created_at.to_s(:short) %></td>
 <td class="operate">
 <%= link_to(edit_work_path(work)) do %>
 <i class="fa fa-edit"></i>
@@ -34,9 +36,9 @@
 <table class="table">
 <thead>
 <tr>
-<th>#</th>
-<th>待辦事情</th>
-<th>更改狀態</th>
+<th></th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
