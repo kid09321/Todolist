@@ -2,6 +2,7 @@
 <div class="form-group">
 <%= f.label "名稱" %>
 <%= f.text_field :title %>
+<%= f.text_field :deadline, type: :date%>
 <%= f.submit "Submit", class: "btn btn-primary" %>
 </div>
 <% end %>

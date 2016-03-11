@@ -11,6 +11,7 @@
 <th></th>
 <th></th>
 <th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
@@ -19,7 +20,10 @@
 <td class="check"><%= link_to(to_completed_work_path(work), method: :post) do %>
     <i class="fa fa-check"></i>
     <% end %></td>
-<td class="work"><%= link_to(work.title, work_path(work))%><br> <%= work.created_at.to_s(:short) %></td>
+<td class="work"><%= link_to(work.title, work_path(work))%><br> <%= work.deadline %></td>
+<td class="date">
+  <%= work.created_at.to_s(:short) %>
+</td>
 <td class="operate">
 <%= link_to(edit_work_path(work)) do %>
 <i class="fa fa-edit"></i>

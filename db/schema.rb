@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311071721) do
+ActiveRecord::Schema.define(version: 20160311170800) do
 
   create_table "lists", force: :cascade do |t|
     t.string   "thing"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160311071721) do
     t.datetime "updated_at",                  null: false
     t.text     "description"
     t.integer  "user_id"
+    t.date     "deadline"
   end
 
 end
