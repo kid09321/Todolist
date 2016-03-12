@@ -2,7 +2,7 @@ class WorksController < ApplicationController
 
   before_action :authenticate_user!
   def index
-    @incomplete_works = current_user.works.where(is_complete: false)
+    @incomplete_works = current_user.works.where(is_complete: false).order("deadline DESC")
     @completed_works = current_user.works.where(is_complete: true)
   end
 
